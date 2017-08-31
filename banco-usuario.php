@@ -7,4 +7,5 @@
 		$usuario = mysqli_fetch_assoc($rs);
 		return $usuario;
 	}
+	die();
 ?>
