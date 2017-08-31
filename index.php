@@ -5,8 +5,15 @@
 		}else {
 			echo "<p class='alert-danger'>Deu errado!</p>";
 		}
-	?>			
+	?>
 	<h1>Bem vindo!</h1>
+	<?php
+		if(isset($_COOKIE["usuario_logado"])) {
+	?>
+		<p class="text-success">Você está logado como <?= $_COOKIE["usuario_logado"] ?></p>
+	<?php
+	}
+	?>
 	<h2>Login</h2>
 	<form action="login.php" method="post">
 		<table class="table">
@@ -23,6 +30,4 @@
 			</tr>
 		</table>
 	</form>
-<?php include("rodape.php"); ?>			
-
-
+<?php include("rodape.php"); ?>
