@@ -1,10 +1,10 @@
 <?php include("cabecalho.php"); ?>
 	<?php
-		if(isset($_GET['login']) && $_GET['login']==1){
-			echo "<p class='alert-success'>Login efetuado com orgulho!</p>";
-		}else {
-			echo "<p class='alert-danger'>Deu errado!</p>";
-		}
+		if(!isset($_GET['login']) || $_GET['login'] != 1) {
+            echo "<p class='alert-danger'>Deu errado!</p>";
+        } else {
+            echo "<p class='alert-success'>Login efetuado com orgulho!</p>";
+        }
 	?>
 	<h1>Bem vindo!</h1>
 	<?php
