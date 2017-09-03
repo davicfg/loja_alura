@@ -1,11 +1,12 @@
 <?php include("cabecalho.php"); ?>
-	<?php
-		if(!isset($_GET['login']) || $_GET['login'] != 1) {
-            echo "<p class='alert-danger'>Deu errado!</p>";
-        } else {
-            echo "<p class='alert-success'>Login efetuado com orgulho!</p>";
-        }
-	?>
+    <?php if(isset($_GET["login"]) && $_GET["login"]==true) { ?>
+        <p class="alert-success">Logado com sucesso!</p>
+    <?php } ?>
+    
+    <?php if(isset($_GET["login"]) && $_GET["login"]==false) { ?>
+        <p class="alert-danger">Usuário ou senha inválida!</p>
+    <?php } ?>
+
 	<h1>Bem vindo!</h1>
 	<?php
 		if(isset($_COOKIE["usuario_logado"])) {
