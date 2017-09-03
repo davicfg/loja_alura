@@ -17,12 +17,21 @@ include("logica-usuario.php");
 
 	<h1>Bem vindo!</h1>
 	<?php
-		if(isset($_COOKIE["usuario_logado"])) {
+		if(isset($_SESSION["usuario_logado"])) {
 	?>
-		<p class="text-success">Você está logado como <?= $_COOKIE["usuario_logado"] ?></p>
+		<p class="text-success">Você está logado como <?= $_SESSION["usuario_logado"] ?></p>
+            <a href="logout.php">Deslogar!</a>
 	<?php
 	}
 	?>
+
+    <?php
+    if(isset($_GET["logout"]) && $_GET["logout"]==1) {
+        ?>
+        <p class="text-success">Deslogado com sucesso</p>
+    <?php }?>
+
+
 	<h2>Login</h2>
 	<form action="login.php" method="post">
 		<table class="table">
