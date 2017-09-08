@@ -1,8 +1,6 @@
 <?php
 error_reporting(E_ALL ^ E_NOTICE);
 include('mostra-alerta.php');
-mostraAlerta('danger');
-mostraAlerta('success');
  ?>
 <html>
 <head>
@@ -31,3 +29,7 @@ mostraAlerta('success');
 
 	<div class="container">
 		<div class="principal">
+<?php
+mostraAlerta('danger');
+mostraAlerta('success');
+?>

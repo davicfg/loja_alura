@@ -35,7 +35,9 @@ include("logica-usuario.php");
         <p class="text-success">Deslogado com sucesso</p>
     <?php }?>
 
-
+<?php
+if(! isset($_SESSION["usuario_logado"])) {
+?>
 	<h2>Login</h2>
 	<form action="login.php" method="post">
 		<table class="table">
@@ -52,4 +54,5 @@ include("logica-usuario.php");
 			</tr>
 		</table>
 	</form>
+<?php } ?>
 <?php include("rodape.php"); ?>
