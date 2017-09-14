@@ -1,5 +1,6 @@
 <?php
 require_once('conecta.php');
+require_once('class/Produto.php');
 function listaProdutos($conexao) {
 	$produtos = array();
 	$resultado = mysqli_query($conexao, "select p.*,c.nome as categoria_nome from produtos as p join categorias as c on c.id=p.categoria_id");
@@ -9,8 +10,10 @@ function listaProdutos($conexao) {
 	return $produtos;
 }
 
-function insereProduto($conexao, $nome, $preco, $descricao, $categoria_id, $usado) {
-	$query = "insert into produtos (nome, preco, descricao, categoria_id, usado) values ('{$nome}', {$preco}, '{$descricao}', {$categoria_id}, {$usado})";
+function insereProduto($conexao,Produto $porduto) {
+	$$query = "insert into produtos (nome, preco, descricao, categoria_id, usado)
+        values ('{$produto->nome}', {$produto->preco}, '{$produto->descricao}',
+            {$produto->categoria_id}, {$produto->usado})";
 	return mysqli_query($conexao, $query);
 }
 function alteraProduto($conexao, $id, $nome, $preco, $descricao, $categoria_id, $usado) {

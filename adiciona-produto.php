@@ -20,7 +20,7 @@ if(array_key_exists('usado', $_POST)) {
 }
 
 if(insereProduto($conexao,$produto)) { ?>
-	<p class="text-success">O produto <?= $produto->nome ?>, <?= $produto->preco ?> foi adicionado.</p>
+	<p class="text-success">O produto <?= $produto->nome ?>,R$ <?= $produto->preco ?> foi adicionado.</p>
 <?php } else {
 	$msg = mysqli_error($conexao);
 ?>
