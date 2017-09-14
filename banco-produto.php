@@ -10,14 +10,14 @@ function listaProdutos($conexao) {
 	return $produtos;
 }
 
-function insereProduto($conexao,Produto $porduto) {
-	$$query = "insert into produtos (nome, preco, descricao, categoria_id, usado)
+function insereProduto($conexao,Produto $produto) {
+	$query = "insert into produtos (nome, preco, descricao, categoria_id, usado)
         values ('{$produto->nome}', {$produto->preco}, '{$produto->descricao}',
             {$produto->categoria_id}, {$produto->usado})";
 	return mysqli_query($conexao, $query);
 }
-function alteraProduto($conexao, $id, $nome, $preco, $descricao, $categoria_id, $usado) {
-	$query = "update produtos set nome = '{$nome}', preco = {$preco}, descricao = '{$descricao}', categoria_id= {$categoria_id}, usado = {$usado} where id = '{$id}'";
+function alteraProduto($conexao,Produto $produto) {
+	$query = "update produtos set nome = '{$produto->nome}', preco = {$produto->preco}, descricao = '{$produto->descricao}', categoria_id= {$produto->categoria_id}, usado = {$produto->usado} where id = '{$produto->id}'";
 	return mysqli_query($conexao, $query);
 }
 
