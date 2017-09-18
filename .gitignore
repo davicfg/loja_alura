@@ -97,3 +97,8 @@ GitHub.sublime-settings
 
 # End of https://www.gitignore.io/api/phpstorm,sublimetext
 conecta.php
+\.idea/inspectionProfiles/profiles_settings\.xml
+
+\.idea/loja_alura\.iml
+
+\.idea/workspace\.xml___jb_tmp___
