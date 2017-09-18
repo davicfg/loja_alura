@@ -37,7 +37,8 @@ function alteraProduto($conexao,Produto $produto) {
 function buscaProduto($conexao, $id) {
 	$query = "select * from produtos where id = {$id}";
 	$resultado = mysqli_query($conexao, $query);
-	return mysqli_fetch_assoc($resultado);
+	var_dump(mysqli_fetch_assoc($resultado)); exit;
+	return true;
 }
 
 function removeProduto($conexao, $id) {
