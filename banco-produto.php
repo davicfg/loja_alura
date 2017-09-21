@@ -29,7 +29,7 @@ function insereProduto($conexao,Produto $produto) {
 	return mysqli_query($conexao, $query);
 }
 function alteraProduto($conexao,Produto $produto) {
-	$query = "update produtos set nome = '{$produto->nome}', preco = {$produto->preco}, descricao = '{$produto->descricao}', categoria_id= {$produto->categoria->id}, usado = {$produto->usado} where id = '{$produto->id}'";
+	$query = "update produtos set nome = '{$produto->nome}', preco = {$produto->preco}, descricao = '{$produto->descricao}', categoria_id= {$produto->categoria->id}, usado = {$produto->usado} where id = {$produto->id}";
 	return mysqli_query($conexao, $query);
 }
 
@@ -37,8 +37,20 @@ function alteraProduto($conexao,Produto $produto) {
 function buscaProduto($conexao, $id) {
 	$query = "select * from produtos where id = {$id}";
 	$resultado = mysqli_query($conexao, $query);
-	var_dump(mysqli_fetch_assoc($resultado)); exit;
-	return true;
+	$array_produto = mysqli_fetch_assoc($resultado);
+
+	$categoria = new Categoria();
+	$categoria->id = $produto_buscado['categoria_id'];
+
+	$produto = new Produto();
+	$produto->id = $array_produto['id'];
+	$produto->nome = $array_produto['nome'];
+	$produto->preco = $array_produto['preco'];
+	$produto->categoria = $categoria;
+	$produto->usdo  = $array_produto['usado'];
+	$produto->descricao = $array_produto['descicao'];
+
+	return $produto;
 }
 
 function removeProduto($conexao, $id) {
