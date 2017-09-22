@@ -9,11 +9,9 @@
     public $descricao;
     public $categoria;
     public $usado;
-    private $descontoPadrao = 0.1;
 
-    function precoComDesconto($valor = $this->descontoPadrao){
-      $this->preco -= $this->preco $valor;
-      return $this->preco;
+    function precoComDesconto($valor = 0.1){
+      return $this->preco - ($this->preco * $valor);;
 
     }
 
