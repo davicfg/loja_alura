@@ -15,7 +15,7 @@ class CategoriaDAO
 
   	$categorias = array();
   	$query = "select * from categorias";
-  	$resultado = mysqli_query($conexao, $query);
+  	$resultado = mysqli_query($this->conexao, $query);
 
   	while($categoria_array = mysqli_fetch_assoc($resultado)) {
   		$categoria = new Categoria();

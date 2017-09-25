@@ -21,7 +21,9 @@ if(array_key_exists('usado', $_POST)) {
 
 $produto = new Produto($nome, $preco, $descricao, $categoria, $usado);
 
-if(insereProduto($conexao,$produto)) { ?>
+$produtoDAO = new ProdutoDAO($conexao);
+
+if($produtoDAO->insereProduto($produto)) { ?>
 	<p class="text-success">O produto <?= $produto->getNome() ?>,R$ <?= $produto->getPreco() ?> foi adicionado.</p>
 <?php } else {
 	$msg = mysqli_error($conexao);

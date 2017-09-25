@@ -15,7 +15,7 @@ class ProdutoDAO
 
   function listaProdutos() {
   	$produtos = array();
-  	$resultado = mysqli_query($conexao, "select p.*,c.nome as categoria_nome from produtos as p join categorias as c on c.id=p.categoria_id");
+  	$resultado = mysqli_query($this->conexao, "select p.*,c.nome as categoria_nome from produtos as p join categorias as c on c.id=p.categoria_id");
       while ($produto_array = mysqli_fetch_assoc($resultado)) {
           $categoria = new Categoria();
           $categoria->setNome($produto_array['categoria_nome']);
@@ -36,17 +36,17 @@ class ProdutoDAO
   	$query = "insert into produtos (nome, preco, descricao, categoria_id, usado)
           values ('{$produto->getNome()}', {$produto->getPreco()}, '{$produto->getDescricao()}',
               {$produto->getCategoria()->getId()}, {$produto->isUsado()})";
-  	return mysqli_query($conexao, $query);
+  	return mysqli_query($this->conexao, $query);
   }
 
   function alteraProduto(Produto $produto) {
   	$query = "update produtos set nome = '{$produto->getNome()}', preco = {$produto->getPreco()}, descricao = '{$produto->getDescricao()}', categoria_id= {$produto->getCategoria()->getId()}, usado = {$produto->isUsado()} where id = {$produto->getId()}";
-  	return mysqli_query($conexao, $query);
+  	return mysqli_query($this->conexao, $query);
   }
 
   function buscaProduto($id) {
   	$query = "select * from produtos where id = {$id}";
-  	$resultado = mysqli_query($conexao, $query);
+  	$resultado = mysqli_query($this->conexao, $query);
   	$array_produto = mysqli_fetch_assoc($resultado);
 
   	$categoria = new Categoria();
@@ -64,6 +64,6 @@ class ProdutoDAO
 
   function removeProduto($id) {
   	$query = "delete from produtos where id = {$id}";
-  	return mysqli_query($conexao, $query);
+  	return mysqli_query($this->conexao, $query);
   }
 }

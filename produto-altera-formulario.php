@@ -4,8 +4,11 @@ require_once("banco-categoria.php");
 require_once("banco-produto.php");
 
 $id = $_GET['id'];
-$produto = buscaProduto($conexao, $id);
-$categorias = listaCategorias($conexao);
+$produtoDAO = new ProdutoDAO($conexao);
+$categoriaDAO = new CategoriaDAO($conexao);
+
+$produto = $produtoDAO->buscaProduto($id);
+$categorias = $categoriaDAO->listaCategorias();
 
 $selecao_usado = $produto->isUsado() ? "checked='checked'" : "";
 $produto->setUsado($selecao_usado);
