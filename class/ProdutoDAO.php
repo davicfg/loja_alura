@@ -38,11 +38,11 @@ class ProdutoDAO
               {$produto->getCategoria()->getId()}, {$produto->isUsado()})";
   	return mysqli_query($conexao, $query);
   }
+
   function alteraProduto(Produto $produto) {
   	$query = "update produtos set nome = '{$produto->getNome()}', preco = {$produto->getPreco()}, descricao = '{$produto->getDescricao()}', categoria_id= {$produto->getCategoria()->getId()}, usado = {$produto->isUsado()} where id = {$produto->getId()}";
   	return mysqli_query($conexao, $query);
   }
-
 
   function buscaProduto($id) {
   	$query = "select * from produtos where id = {$id}";
