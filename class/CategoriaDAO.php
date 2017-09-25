@@ -11,7 +11,7 @@ class CategoriaDAO
     $this->conexao = $conexao;
   }
 
-  function listaCategorias($conexao) {
+  function listaCategorias() {
 
   	$categorias = array();
   	$query = "select * from categorias";
