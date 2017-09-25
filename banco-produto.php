@@ -9,14 +9,13 @@ function listaProdutos($conexao) {
         $categoria = new Categoria();
         $categoria->setNome($produto_array['categoria_nome']);
 
-        $produto = new Produto();
-        $produto->setId($produto_array['id']);
-        $produto->setNome($produto_array['nome']);
-        $produto->setDescricao($produto_array['descricao']);
-        $produto->setCategoria($categoria);
-        $produto->setPreco($produto_array['preco']);
-        $produto->setUsado($produto_array['usado']);
+        $nome = $produto_array['nome'];
+        $descricao = $produto_array['descricao'];
+        $preco = $produto_array['preco'];
+        $usado = $produto_array['usado'];
 
+        $produto = new Produto($nome, $preco,$descricao, $categoria, $usado);
+        $produto->setId($produto_array['id']);
         array_push($produtos, $produto);
     }
 	return $produtos;
@@ -42,15 +41,14 @@ function buscaProduto($conexao, $id) {
 	$categoria = new Categoria();
 	$categoria->setId($array_produto['categoria_id']);
 
-	$produto = new Produto();
-	$produto->setId($array_produto['id']);
-	$produto->setNome($array_produto['nome']);
-	$produto->setPreco($array_produto['preco']);
-	$produto->setCategoria($categoria);
-	$produto->SetUsado($array_produto['usado']);
-	$produto->setDescricao($array_produto['descricao']);
-
-	return $produto;
+    $id = $array_produto['id'];
+    $nome = $array_produto['nome'];
+    $preco = $array_produto['preco'];
+    $usado = $array_produto['usado'];
+    $descricao = $array_produto['descricao'];
+    $produto = new Produto($nome, $preco, $descricao,$categoria, $usado, $usado);
+    $produto->setId($id);
+    return $produto;
 }
 
 function removeProduto($conexao, $id) {

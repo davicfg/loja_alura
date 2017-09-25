@@ -9,10 +9,9 @@ $categorias = listaCategorias($conexao);
 $categoria = new Categoria();
 $categoria->setId(1);
 
-$produto = new Produto();
-$produto->setCategoria($categoria);
+$produto = new Produto("", "", "", $categoria, "");
 
-$usado = "";
+$categorias = listaCategorias($conexao);
 ?>
 	<h1>Formulário de produto</h1>
 	<form action="adiciona-produto.php" method="post">
