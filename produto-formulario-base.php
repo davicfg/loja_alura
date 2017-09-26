@@ -30,13 +30,37 @@
             foreach($categorias as $categoria) :
                 $essaEhACategoria = $produto->getCategoria()->getId() == $categoria->getId();
                 $selecao = $essaEhACategoria ? "selected='selected'" : "";
-                ?>
+            ?>
                 <option value="<?=$categoria->getId()?>" <?=$selecao?>>
                     <?=$categoria->getNome()?>
                 </option>
-                <?php
+            <?php
             endforeach
             ?>
         </select>
     </td>
+    <tr>
+      <td>Tipo do produto</td>
+      <td>
+
+        <select class="form-control" name="tipoProduto">
+          <?php
+            $tipos = array('Livro', 'Produto');
+            foreach ($tipos as $tipos) {
+              $esseEhOTipo = get_class($produto) == $tipo;
+              $selecao = $esseEhOTipo ? "selected=selected": "";
+            }
+          ?>
+          <option value="<?=$tipo?>" <?= $selecao?>>
+              <?= $tipo ?>
+          </option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td>ISBN (caso tenha)</td>
+      <td>
+        <input type="text" name="isbn" class="form-control" value="<?php if ($produto->temIsbn()) { echo $produto->getIsbn(); } ?>">
+      </td>
+    </tr>
 </tr>

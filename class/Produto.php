@@ -61,6 +61,11 @@ class Produto {
     function __toString() {
         return $this->nome.": R$ ".$this->preco;
     }
+
+    function temIsbn() {
+      return $this instanceof Livro;
+    }
+
 }
 
 ?>
