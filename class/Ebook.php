@@ -6,7 +6,19 @@
  * Time: 17:31
  */
 
-class Ebook
+class Ebook extends Livro
 {
+    private $waterMark;
+
+    public function getWaterMark()
+    {
+        return $this->waterMark;
+    }
+
+    public function setWaterMark($waterMark)
+    {
+        $this->waterMark = $waterMark;
+    }
+
 
 }
