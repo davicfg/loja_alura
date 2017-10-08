@@ -1,4 +1,4 @@
-<?php 
+<?php
 require_once("cabecalho.php");
 require_once("logica-usuario.php");
 
@@ -30,7 +30,7 @@ $produtoDao = new ProdutoDao($conexao);
 
 if($produtoDao->insereProduto($produto)) { ?>
 	<p class="text-success">O produto <?= $produto->getNome() ?>, <?= $produto->getPreco() ?> foi adicionado.</p>
-<?php 
+<?php
 } else {
 	$msg = mysqli_error($conexao);
 ?>
