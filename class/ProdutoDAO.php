@@ -84,7 +84,13 @@ class ProdutoDAO
       $preco = $array_produto['preco'];
       $usado = $array_produto['usado'];
       $descricao = $array_produto['descricao'];
-      $produto = new Produto($nome, $preco, $descricao,$categoria, $usado, $usado);
+      if($isbn = $array_produto['isbn']){
+          $produto = new Livro($nome, $preco, $descricao,$categoria, $usado, $usado);
+          $produto->setIsbn($isbn);
+      }else{
+          $produto = new Produto($nome, $preco, $descricao,$categoria, $usado, $usado);
+      }
+
       $produto->setId($id);
       return $produto;
   }
