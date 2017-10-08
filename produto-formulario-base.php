@@ -41,23 +41,28 @@
 	</td>
 </tr>
 <tr>
-	<td>Tipo do produto</td>
-	<td>
-		<select name="tipoProduto" class="form-control">
-			<?php
-			$tipos = array("Livro", "Produto");
-			foreach($tipos as $tipo) : 
-				$esseEhOTipo = get_class($produto) == $tipo;
-				$selecaoTipo = $esseEhOTipo ? "selected='selected'" : "";
-			?>
-				<option value="<?=$tipo?>" <?=$selecaoTipo?>>
-					<?=$tipo?>
-				</option>
-			<?php
-			endforeach 
-			?>
-		</select>
-	</td>
+    <td>Tipo do produto</td>
+    <td>
+        <select name="tipoProduto" class="form-control">
+            <?php
+            $tipos = array("Produto", "Livro Fisico", "Ebook");
+            foreach($tipos as $tipo) :
+                $tipoSemEspaco = str_replace(' ', '', $tipo);
+                $esseEhOTipo = get_class($produto) == $tipoSemEspaco;
+                $selecaoTipo = $esseEhOTipo ? "selected='selected'" : "";
+                ?>
+                <?php if ($tipo == "Livro Fisico") : ?>
+                    <optgroup label="Livros">
+                <?php endif ?>
+                    <option value="<?=$tipoSemEspaco?>" <?=$selecaoTipo?>>
+                        <?=$tipo?>
+                    </option>
+                <?php if ($tipo == "Ebook") : ?>
+                </optgroup>
+            <?php endif ?>
+            <?php endforeach ?>
+        </select>
+    </td>
 </tr>
 <tr>
 	<td>ISBN (caso seja um livro)</td>
