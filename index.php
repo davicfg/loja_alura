@@ -1,42 +1,16 @@
-<?php require_once("cabecalho.php");
+<?php
+require_once("cabecalho.php");
 require_once("logica-usuario.php");
-
 ?>
-    <?php
-      if(isset($_SESSION["danger"])) {
-    ?>
-    <p class="alert-danger"><?= $_SESSION["danger"]?></p>
-    <?php
-       unset($_SESSION["danger"]);
-    }?>
 
-    <?php
-      if(isset($_SESSION["success"])) {
-    ?>
-    <p class="alert-success"><?= $_SESSION["success"]?></p>
-    <?php
-       unset($_SESSION["success"]);
-    }?>
-
-	<h1>Bem vindo!</h1>
-	<?php
-		if(isset($_SESSION["usuario_logado"])) {
-	?>
-		<p class="text-success">Você está logado como <?= $_SESSION["usuario_logado"] ?></p>
-            <a href="logout.php">Deslogar!</a>
-	<?php
-	}
-	?>
-
-
-    <?php
-    if(isset($_GET["logout"]) && $_GET["logout"]==1) {
-        ?>
-        <p class="text-success">Deslogado com sucesso</p>
-    <?php }?>
+<h1>Bem vindo!</h1>
 
 <?php
-if(! isset($_SESSION["usuario_logado"])) {
+if(usuarioEstaLogado()) {
+?>
+	<p class="text-success">Você está logado como <?= usuarioLogado() ?>. <a href="logout.php">Deslogar</a></p>
+<?php
+} else {
 ?>
 	<h2>Login</h2>
 	<form action="login.php" method="post">
@@ -50,9 +24,12 @@ if(! isset($_SESSION["usuario_logado"])) {
 				<td><input class="form-control" type="password" name="senha"></td>
 			</tr>
 			<tr>
-				<td><button type="submit" class="btn btn-primary">Login</button></td>
+				<td><button class="btn btn-primary">Login</button></td>
 			</tr>
 		</table>
 	</form>
-<?php } ?>
+<?php
+}
+?>
+
 <?php include("rodape.php"); ?>

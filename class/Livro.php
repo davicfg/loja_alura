@@ -2,13 +2,13 @@
 
   class Livro extends Produto {
 
-    private isbn;
+    private $isbn;
 
     function __construct($isbn)
     {
-      $this->isbn = $isn;
+      $this->isbn = $isbn;
     }
-  }
+
 
   public function getIsbn() {
     return $this->isbn;
@@ -18,5 +18,5 @@
     $this->isbn = $isbn;
   }
 
-
+  }
  ?>
