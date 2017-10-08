@@ -24,8 +24,13 @@ class ProdutoDAO
           $descricao = $produto_array['descricao'];
           $preco = $produto_array['preco'];
           $usado = $produto_array['usado'];
+          if($produto_array['isbn']){
+              $produto = new Livro($nome, $preco,$descricao, $categoria, $usado);
+              $produto->setIsbn($produto_array['isbn']);
+          }else{
+              $produto = new Produto($nome, $preco,$descricao, $categoria, $usado);
+          }
 
-          $produto = new Produto($nome, $preco,$descricao, $categoria, $usado);
           $produto->setId($produto_array['id']);
           array_push($produtos, $produto);
       }
@@ -33,14 +38,11 @@ class ProdutoDAO
   }
 
   function insereProduto(Produto $produto) {
-
       $isbn = "";
       if ($produto->temIsbn()) {
           $isbn = $produto->getIsbn();
       }
-
       $tipoProduto = get_class($produto);
-
       $query = "insert into produtos (nome, preco, descricao, categoria_id,
           usado, isbn, tipoProduto) values ('{$produto->getNome()}',
               {$produto->getPreco()}, '{$produto->getDescricao()}',
