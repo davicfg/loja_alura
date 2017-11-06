@@ -1,8 +1,4 @@
-<<<<<<< Updated upstream
-<?php
-=======
 <?php 
->>>>>>> Stashed changes
 require_once("cabecalho.php");
 require_once("logica-usuario.php");
 
@@ -34,11 +30,7 @@ $produtoDao = new ProdutoDao($conexao);
 
 if($produtoDao->insereProduto($produto)) { ?>
 	<p class="text-success">O produto <?= $produto->getNome() ?>, <?= $produto->getPreco() ?> foi adicionado.</p>
-<<<<<<< Updated upstream
-<?php
-=======
 <?php 
->>>>>>> Stashed changes
 } else {
 	$msg = mysqli_error($conexao);
 ?>

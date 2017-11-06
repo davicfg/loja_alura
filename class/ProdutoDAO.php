@@ -14,16 +14,22 @@ class ProdutoDAO
   }
 
   function listaProdutos() {
-  	$produtos = array();
-  	$resultado = mysqli_query($this->conexao, "select p.*,c.nome as categoria_nome from produtos as p join categorias as c on c.id=p.categoria_id");
-      while ($produto_array = mysqli_fetch_assoc($resultado)) {
+
+      $produtos = array();
+      $resultado = mysqli_query($this->conexao, "select p.*,c.nome as categoria_nome
+          from produtos as p join categorias as c on c.id=p.categoria_id");
+
+      while($produto_array = mysqli_fetch_assoc($resultado)) {
+
           $categoria = new Categoria();
           $categoria->setNome($produto_array['categoria_nome']);
 
+          $produto_id = $produto_array['id'];
           $nome = $produto_array['nome'];
           $descricao = $produto_array['descricao'];
           $preco = $produto_array['preco'];
           $usado = $produto_array['usado'];
+<<<<<<< Updated upstream
           if($produto_array['isbn']){
               $produto = new Livro($nome, $preco,$descricao, $categoria, $usado);
               $produto->setIsbn($produto_array['isbn']);
@@ -32,10 +38,26 @@ class ProdutoDAO
           }
 
           $produto->setId($produto_array['id']);
+=======
+          $isbn = $produto_array['isbn'];
+          $tipoProduto = $produto_array['tipoProduto'];
+
+          if ($tipoProduto == "Livro") {
+              $produto = new Livro($nome, $preco, $descricao, $categoria, $usado);
+              $produto->setIsbn($isbn);
+          } else {
+              $produto = new Produto($nome, $preco, $descricao, $categoria, $usado);
+          }
+
+          $produto->setId($produto_id);
+
+>>>>>>> Stashed changes
           array_push($produtos, $produto);
       }
-  	return $produtos;
+
+      return $produtos;
   }
+
 
   function insereProduto(Produto $produto) {
       $isbn = "";
@@ -71,6 +93,7 @@ class ProdutoDAO
       return mysqli_query($this->conexao, $query);
   }
 
+<<<<<<< Updated upstream
   function buscaProduto($id) {
   	$query = "select * from produtos where id = {$id}";
   	$resultado = mysqli_query($this->conexao, $query);
@@ -94,9 +117,33 @@ class ProdutoDAO
       $produto->setId($id);
       return $produto;
   }
+=======
+  function buscaProduto(Produto $produto) {
+      $id = $produto->getId();
+      $query = "select * from produtos where id = {$id}";
+      $resultado = mysqli_query($this->conexao, $query);
+      $produto_buscado = mysqli_fetch_assoc($resultado);
 
-  function removeProduto($id) {
-  	$query = "delete from produtos where id = {$id}";
-  	return mysqli_query($this->conexao, $query);
+      $categoria = new Categoria();
+      $categoria->setId($produto_buscado['categoria_id']);
+
+      $nome = $produto_buscado['nome'];
+      $descricao = $produto_buscado['descricao'];
+      $preco = $produto_buscado['preco'];
+      $usado = $produto_buscado['usado'];
+      $isbn = $produto_buscado['isbn'];
+      $tipoProduto = $produto_buscado['tipoProduto'];
+
+      if ($tipoProduto == "Livro") {
+          $produto = new Livro($nome, $preco, $descricao, $categoria, $usado);
+          $produto->setIsbn($isbn);
+      } else {
+          $produto = new Produto($nome, $preco, $descricao, $categoria, $usado);
+      }
+
+      $produto->setId($produto_buscado['id']);
+>>>>>>> Stashed changes
+
+      return $produto;
   }
 }
